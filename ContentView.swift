@@ -94,11 +94,10 @@ struct PlantView: View {
             Spacer(minLength: 10)
             HStack{
                 Button(action: {
-                    // Add the action you want the button to perform when tapped
                     let Pump = Database.database().reference().child("Arduino/Pump/")
                     Pump.setValue("ON")
                 }) {
-                    // Customize the button's appearance
+                
                     Text("ON")
                         .padding()
                         .background(Color.white)
@@ -108,11 +107,11 @@ struct PlantView: View {
                 }
                 Spacer(minLength: 10)
                 Button(action: {
-                    // Add the action you want the button to perform when tapped
+               
                     let Pump = Database.database().reference().child("Arduino/Pump/")
                     Pump.setValue("OFF")
                 }) {
-                    // Customize the button's appearance
+      
                     Text("OFF")
                         .padding()
                         .background(Color.white)
@@ -130,28 +129,20 @@ struct PlantView: View {
         .padding()
         .navigationTitle("Plant Health")
         .task {
-            // Reference to your Firebase Realtime Database node
+            
             let Moisture = Database.database().reference().child("Arduino/Moisture/")
             
-            //ref.setValue(42)
-            // Observe the data
+       
             Moisture.observe(.value) { snapshot in
                 if let value = snapshot.value as? Int {
                     self.data = value
-                    //result = storemoisturevalue(Value:data)
-                    // print(result)
+                 
                 }
             }
             fetchDataFromFirebase()
         }
 
-        //  func storemoisturevalue(result:Int = result)-> Int {
-        //ref.setValue(42)
-        // Observe the data
-        //result = Value
-        //   print(result)
-        // return (result)
-        //}
+
     }
     func fetchDataFromFirebase() {
         let Moisture = Database.database().reference().child("Arduino/Moisture/")
@@ -201,9 +192,6 @@ struct FishView: View {
     @State private var data1: Int = 0
     @State private var data2: Int = 0
     
-    //@State var result: Int = 0
-    //@State var result1: Int = 0
-    //@State var result2: Int = 0
     var body: some View {
         
             VStack(spacing: 10) {
@@ -211,21 +199,17 @@ struct FishView: View {
                 Text("Water Level")
                     .multilineTextAlignment(.center)
                 BarView(value: Double(data2), minValue: 0, maxValue: 14, backgroundColor: .gray, BarWidth: 200, BarHeight: 40)
-                //BarColor: .red
-                //GaugeView(value: Double(data2), minValue: 0, maxValue: 100, gaugeColor: .red, backgroundColor: .gray, gaugeWidth: 10)
                 Text("pH")
                     .multilineTextAlignment(.center)
                       
-                //Spacer(minLength: 10)
-                //Text("Fill Water")
                 HStack{
                     //Text("Fill Water")
                     Button(action: {
-                                    // Add the action you want the button to perform when tapped
+                                    
                         let Pump = Database.database().reference().child("Arduino/Pump/")
                                     Pump.setValue("ON")
                                 }) {
-                                    // Customize the button's appearance
+                                    
                                     Text("Fill Water")
                                         .padding()
                                         .background(Color.white)
@@ -235,11 +219,11 @@ struct FishView: View {
                                 }
                     Spacer(minLength: 10)
                     Button(action: {
-                                    // Add the action you want the button to perform when tapped
+                                    
                         let Pump = Database.database().reference().child("Arduino/Pump/")
                                     Pump.setValue("OFF")
                                 }) {
-                                    // Customize the button's appearance
+                                    
                                     Text("OFF")
                                         .padding()
                                         .background(Color.white)
@@ -253,11 +237,11 @@ struct FishView: View {
                 HStack{
                     //Text("Fill Water")
                     Button(action: {
-                                    // Add the action you want the button to perform when tapped
+                                    
                         let Pump = Database.database().reference().child("Arduino/Pump2/")
                                     Pump.setValue("ON")
                                 }) {
-                                    // Customize the button's appearance
+                                    
                                     Text("Empty Tank")
                                         .padding()
                                         .background(Color.white)
@@ -267,11 +251,11 @@ struct FishView: View {
                                 }
                     Spacer(minLength: 10)
                     Button(action: {
-                                    // Add the action you want the button to perform when tapped
+                                    
                         let Pump = Database.database().reference().child("Arduino/Pump2/")
                                     Pump.setValue("OFF")
                                 }) {
-                                    // Customize the button's appearance
+                                    
                                     Text("OFF")
                                         .padding()
                                         .background(Color.white)
@@ -286,11 +270,11 @@ struct FishView: View {
                 HStack{
                     
                     Button(action: {
-                        // Add the action you want the button to perform when tapped
+                        
                         let Servo = Database.database().reference().child("Arduino/Servo/")
                         Servo.setValue("A")
                     }) {
-                        // Customize the button's appearance
+                        
                         Text("A")
                             .padding()
                             .background(Color.white)
@@ -300,11 +284,11 @@ struct FishView: View {
                     }
                     Spacer(minLength: 10)
                     Button(action: {
-                        // Add the action you want the button to perform when tapped
+                        
                         let Servo = Database.database().reference().child("Arduino/Servo/")
                         Servo.setValue("B")
                     }) {
-                        // Customize the button's appearance
+                        
                         Text("B")
                             .padding()
                             .background(Color.white)
@@ -321,7 +305,7 @@ struct FishView: View {
             .padding()
             .navigationTitle("Aquarium Health")
             .task {
-                // Reference to your Firebase Realtime Database node
+                
                 let WaterLevel = Database.database().reference().child("Arduino/WaterLevel/")
                 let pH = Database.database().reference().child("Arduino/pH/")
                 let Moisture = Database.database().reference().child("Arduino/Moisture/")
@@ -339,7 +323,7 @@ struct FishView: View {
                                     if let value = snapshot.value as? Int {
                                         self.data2 = value
                                         if data1 < 50 || data < 50 || data2 < 7 {
-                                            //scheduleLocalNotification(Value:data,Value1:data1,Value2: data2)
+                                            
                                             print("\(data),\(data1),\(data2)")
                                             
                                         }
@@ -353,29 +337,7 @@ struct FishView: View {
             }
         }
 
-    /*func scheduleLocalNotification(Value:Int, Value1:Int, Value2:Int) {
-            result = Value
-            result1 = Value1
-            result2 = Value2
-            //print(Value)
-        
-           // let result = myStructInstance.storemoisturevalue()
-            let content = UNMutableNotificationContent()
-            content.title = "Care"
-            content.body = "Some parameters are not in the desired range, please check your plant/pets health.\n\n Mositure:\(result) (Desired Range : above 50)\nWaterLevel:\(result1) (Desired Range : above 50\npH:\(result2) (Desired Range : between 6-8)"
-
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-
-            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-
-            UNUserNotificationCenter.current().add(request) { error in
-                if let error = error {
-                    print("Error scheduling notification: \(error)")
-                } else {
-                    print("Notification scheduled successfully!")
-                }
-            }
-        }*/
+  
         
     
 }
@@ -465,12 +427,6 @@ struct BarView: View{
             }
             .offset(x:  (BarWidth*CGFloat(min(normalizedValue, 1.0)))/2 - 100)
             
-           // Rectangle()
-            //    .foregroundColor(BarColor)
-           //     .frame(width: BarWidth*CGFloat(min(normalizedValue, 1.0)),height: 40.0)
-               // .alignmentGuide(g:HorizontalAlignment, computeValue: 0.0)
-               // .trim(from: 0.0, to: CGFloat(normalizedValue))
-                //.stroke(BarColor, style: StrokeStyle(lineWidth: BarWidth, lineCap: .square))
             
             Text("\(Int(value))")
                 .font(.headline)
@@ -542,17 +498,14 @@ class Notificataion: ObservableObject {
                 self.data2 = value
             }
         }
-        //     if data < 50 || data1 < 50 || data2 < 6 {
-        //  createAlert()
-        //   }
-       // checkAndDisplayNotification()
+
     }
     func createAlert() -> Alert {
             return Alert(
                 title: Text("Greetings"),
                 message: Text("Welcome to Care App"),
                 dismissButton: .default(Text("OK")) {
-                    // Do something after the alert is dismissed
+                   
                 }
             )
         }
@@ -568,7 +521,7 @@ struct Notify {
                 title: Text("Greetings"),
                 message: Text("Welcome to Care App"),
                 dismissButton: .default(Text("OK")) {
-                    // Do something after the alert is dismissed
+                    
                 }
             )
         }
@@ -594,12 +547,10 @@ struct Message: View {
             let pH = Database.database().reference().child("Arduino/pH/")
             let Moisture = Database.database().reference().child("Arduino/Moisture/")
             
-            //ref.setValue(42)
-            // Observe the data
+
             Moisture.observe(.value) { snapshot in
                 if let value = snapshot.value as? Int {
                     self.data = value
-                    //Val(Value:data)
                     WaterLevel.observe(.value) { snapshot in
                         if let value = snapshot.value as? Int {
                             self.data1 = value
@@ -623,9 +574,6 @@ struct Message: View {
             result = Value
             result1 = Value1
             result2 = Value2
-            //print(Value)
-        
-           // let result = myStructInstance.storemoisturevalue()
             let content = UNMutableNotificationContent()
             content.title = "Care"
             content.body = "Some parameters are not in the desired range, please check your plant/pets health.\n\n Mositure:\(result) (Desired Range : above 50)\nWaterLevel:\(result1) (Desired Range : above 50\npH:\(result2) (Desired Range : between 6-8)"
